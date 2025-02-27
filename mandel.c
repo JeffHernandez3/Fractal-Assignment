@@ -7,10 +7,21 @@
 #include <math.h>
 #include <errno.h>
 #include <string.h>
+#include <pthread.h>
 
 int iteration_to_color( int i, int max );
 int iterations_at_point( double x, double y, int max );
 void compute_image( struct bitmap *bm, double xmin, double xmax, double ymin, double ymax, int max );
+void threadOut(int threadNum, int w, int l);
+void * run_me( void * arg, int threadNum, int w, int l);
+
+//Multi threaded programming starts here with first starting by putting structure
+struct parameters
+{
+  int thread_id;
+  int x;
+  int y;
+};
 
 void show_help()
 {
@@ -44,11 +55,11 @@ int main( int argc, char *argv[] )
 	int    image_width = 500;
 	int    image_height = 500;
 	int    max = 1000;
-
+	int	   threadNum = 1;
 	// For each command line argument given,
 	// override the appropriate configuration value.
 
-	while((c = getopt(argc,argv,"x:y:s:W:H:m:o:h"))!=-1) {
+	while((c = getopt(argc,argv,"x:y:s:W:H:m:o:h:n"))!=-1) {
 		switch(c) {
 			case 'x':
 				xcenter = atof(optarg);
@@ -75,12 +86,18 @@ int main( int argc, char *argv[] )
 				show_help();
 				exit(1);
 				break;
+			case 'n':
+				threadNum = atoi(optarg);
+				break;
 		}
 	}
 
 	// Display the configuration of the image.
 	printf("mandel: x=%lf y=%lf scale=%lf max=%d outfile=%s\n",xcenter,ycenter,scale,max,outfile);
 
+
+	//Follows as normal if thread num is equal to 1
+	if(threadNum == 1){
 	// Create a bitmap of the appropriate size.
 	struct bitmap *bm = bitmap_create(image_width,image_height);
 
@@ -94,6 +111,13 @@ int main( int argc, char *argv[] )
 	if(!bitmap_save(bm,outfile)) {
 		fprintf(stderr,"mandel: couldn't write to %s: %s\n",outfile,strerror(errno));
 		return 1;
+	}
+	}
+	else if (threadNum > 0){
+		struct bitmap *bm = bitmap_create(image_width/threadNum, image_height/threadNum);
+	}
+	else{
+		printf("invalid thread number");
 	}
 
 	return 0;
@@ -168,6 +192,49 @@ int iteration_to_color( int i, int max )
 	return MAKE_RGBA(gray,gray,gray,0);
 }
 
+void threadOut(int threadNum, int w, int l){
+	pthread_t tid[threadNum];
+	struct parameters params[threadNum];
+ 
+	int i;
+  
+	for( i = 0; i < threadNum; i++ )
+	{ 
+	params[i].x = 10;
+    params[i].y = 100;
+    params[i].thread_id = i;
+
+    pthread_create( &tid[i], NULL, run_me((void*)&params[i],threadNum,w,l), (void *) &params[i] );
+	}
+
+	for( i = 0; i < threadNum; i++ )
+	{ 
+    	pthread_join( tid[i], NULL );
+	}
+}
+
+void * run_me( void * arg, int threadNum, int w, int l)
+{
+  int i;
+
+  int x;
+  int y;
+
+  struct parameters * params = (struct parameters *) arg;
+
+  x = params -> x;
+  y = params -> y;
+
+  int begin = params->thread_id * 10000 / threadNum;
+  int end   = ( begin   + 10000 / threadNum ) - 1;
+
+  for( i = begin; i < end; i++ )
+  {
+	struct bitmap *bm = bitmap_create(w/threadNum, l/threadNum);
+  }
+
+  return NULL;
+}
 
 
 

@@ -1,0 +1,24 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     a.out
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _show_help, symObjAddr: 0x0, symBinAddr: 0x100002898, symSize: 0xB8 }
+  - { offsetInCU: 0x7B, offset: 0x7B, size: 0x8, addend: 0x0, symName: _show_help, symObjAddr: 0x0, symBinAddr: 0x100002898, symSize: 0xB8 }
+  - { offsetInCU: 0x90, offset: 0x90, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xB8, symBinAddr: 0x100002950, symSize: 0x2F0 }
+  - { offsetInCU: 0x180, offset: 0x180, size: 0x8, addend: 0x0, symName: _compute_image, symObjAddr: 0x470, symBinAddr: 0x100002D08, symSize: 0x158 }
+  - { offsetInCU: 0x25A, offset: 0x25A, size: 0x8, addend: 0x0, symName: _iterations_at_point, symObjAddr: 0x5C8, symBinAddr: 0x100002E60, symSize: 0x100 }
+  - { offsetInCU: 0x2F2, offset: 0x2F2, size: 0x8, addend: 0x0, symName: _iteration_to_color, symObjAddr: 0x6C8, symBinAddr: 0x100002F60, symSize: 0x48 }
+  - { offsetInCU: 0x336, offset: 0x336, size: 0x8, addend: 0x0, symName: _threadOut, symObjAddr: 0x710, symBinAddr: 0x100002FA8, symSize: 0x1FC }
+  - { offsetInCU: 0x3BA, offset: 0x3BA, size: 0x8, addend: 0x0, symName: _run_me, symObjAddr: 0x90C, symBinAddr: 0x1000031A4, symSize: 0xD8 }
+  - { offsetInCU: 0x26, offset: 0x587, size: 0x8, addend: 0x0, symName: _bitmap_create, symObjAddr: 0x0, symBinAddr: 0x10000327C, symSize: 0xBC }
+  - { offsetInCU: 0x48, offset: 0x5A9, size: 0x8, addend: 0x0, symName: _bitmap_create, symObjAddr: 0x0, symBinAddr: 0x10000327C, symSize: 0xBC }
+  - { offsetInCU: 0x8C, offset: 0x5ED, size: 0x8, addend: 0x0, symName: _bitmap_delete, symObjAddr: 0xBC, symBinAddr: 0x100003338, symSize: 0x30 }
+  - { offsetInCU: 0xB0, offset: 0x611, size: 0x8, addend: 0x0, symName: _bitmap_reset, symObjAddr: 0xEC, symBinAddr: 0x100003368, symSize: 0x6C }
+  - { offsetInCU: 0xF0, offset: 0x651, size: 0x8, addend: 0x0, symName: _bitmap_get, symObjAddr: 0x158, symBinAddr: 0x1000033D4, symSize: 0x10C }
+  - { offsetInCU: 0x134, offset: 0x695, size: 0x8, addend: 0x0, symName: _bitmap_set, symObjAddr: 0x264, symBinAddr: 0x1000034E0, symSize: 0x114 }
+  - { offsetInCU: 0x182, offset: 0x6E3, size: 0x8, addend: 0x0, symName: _bitmap_width, symObjAddr: 0x378, symBinAddr: 0x1000035F4, symSize: 0x18 }
+  - { offsetInCU: 0x1AA, offset: 0x70B, size: 0x8, addend: 0x0, symName: _bitmap_height, symObjAddr: 0x390, symBinAddr: 0x10000360C, symSize: 0x18 }
+  - { offsetInCU: 0x1D2, offset: 0x733, size: 0x8, addend: 0x0, symName: _bitmap_data, symObjAddr: 0x3A8, symBinAddr: 0x100003624, symSize: 0x18 }
+  - { offsetInCU: 0x1FA, offset: 0x75B, size: 0x8, addend: 0x0, symName: _bitmap_save, symObjAddr: 0x3C0, symBinAddr: 0x10000363C, symSize: 0x2B8 }
+  - { offsetInCU: 0x2B1, offset: 0x812, size: 0x8, addend: 0x0, symName: _bitmap, symObjAddr: 0x678, symBinAddr: 0x1000038F4, symSize: 0x238 }
+...
